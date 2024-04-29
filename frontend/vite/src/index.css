@@ -6,6 +6,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  --theme-color: #c79c76;
   --color: rgba(255, 255, 255, 0.87);
   --background-color: #242424;
   --2nd-background-color: #363737;

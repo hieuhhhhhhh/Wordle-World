@@ -1,21 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoGameControllerOutline } from "react-icons/io5";
 import { LiaChartBar } from "react-icons/lia";
 
 const TabBar = () => {
+  const location = useLocation();
+
   return (
     <nav style={styles.navStyle}>
-      <Link to="/profile" style={styles.tabStyle}>
-        <IoPersonOutline size={24} style={{ color: "var(--color)" }} />
-      </Link>
-      <Link to="/" style={styles.tabStyle}>
-        <IoGameControllerOutline size={24} style={{ color: "var(--color)" }} />
-      </Link>
-      <Link to="/ranking" style={styles.tabStyle}>
-        <LiaChartBar size={24} style={{ color: "var(--color)" }} />
-      </Link>
+      <NavLink to="/profile" style={styles.tabStyle}>
+        <IoPersonOutline
+          size={30}
+          style={
+            location.pathname === "/profile" ? styles.activeIcon : styles.icon
+          }
+        />
+      </NavLink>
+      <NavLink to="/" style={styles.tabStyle}>
+        <IoGameControllerOutline
+          size={30}
+          style={location.pathname === "/" ? styles.activeIcon : styles.icon}
+        />
+      </NavLink>
+      <NavLink to="/ranking" style={styles.tabStyle}>
+        <LiaChartBar
+          size={30}
+          style={
+            location.pathname === "/ranking" ? styles.activeIcon : styles.icon
+          }
+        />
+      </NavLink>
     </nav>
   );
 };
@@ -29,17 +44,24 @@ const styles = {
     borderTopRightRadius: "10px", // Adjust the radius as needed
   },
   tabStyle: {
-    marginRight: "20px",
-    marginLeft: "20px",
-
+    flex: 1, // This will make each component take up equal space
     display: "flex",
-    alignItems: "center", // Center content vertically
+
     justifyContent: "center", // Center content horizontally
-    width: "50px",
-    height: "40px",
-    padding: "10px",
     color: "black",
     textDecoration: "none",
+  },
+  icon: {
+    padding: "10px",
+    flex: 1,
+    color: "var(--color)",
+  },
+  activeIcon: {
+    padding: "10px",
+    flex: 1,
+    color: "var(--theme-color)",
+    borderBottom: "2px solid",
+    borderColor: "var(--theme-color)",
   },
 };
 
