@@ -24,7 +24,7 @@ const styles = {
   navStyle: {
     display: "flex",
     justifyContent: "center",
-    backgroundColor: "var(--background-color)",
+    backgroundColor: "var(--2nd-background-color)",
     borderTopLeftRadius: "10px", // Adjust the radius as needed
     borderTopRightRadius: "10px", // Adjust the radius as needed
   },

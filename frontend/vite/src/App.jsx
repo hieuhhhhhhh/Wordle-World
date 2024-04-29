@@ -32,13 +32,19 @@ const styles = {
     right: 0,
     bottom: 0,
     left: 0,
+    backgroundImage: `url('background.jpg')`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
   },
   content: {
-    width: "500px",
+    maxWidth: "500px",
     margin: "auto",
     display: "flex",
     flexDirection: "column",
-    minHeight: "93vh", // Take up all vertical space
+    minHeight: "93vh",
+    backgroundColor: "var(--background-color)",
+    borderRadius: "10px",
   },
 };
 
