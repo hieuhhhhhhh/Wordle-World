@@ -4,47 +4,25 @@ import { IoPersonOutline } from "react-icons/io5";
 import { IoGameControllerOutline } from "react-icons/io5";
 import { LiaChartBar } from "react-icons/lia";
 
-import Profile from "./screens/Home";
-import Play from "./screens/About";
-import Rank from "./screens/About";
-import TabBar from "./Components/TabBar";
-
 import "./index.css";
 
-function App() {
+const TabBar = () => {
   return (
-    <Router>
-      <div style={styles.container}>
-        <div style={styles.content}>
-          <TabBar />
-
-          <Routes>
-            <Route path="/ranking" exact element={<Rank />} />
-            <Route path="/" element={<Play />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </div>
-      </div>
-    </Router>
+    <nav style={styles.navStyle}>
+      <Link to="/profile" style={styles.tabStyle}>
+        <IoPersonOutline size={24} style={{ color: "var(--color)" }} />
+      </Link>
+      <Link to="/" style={styles.tabStyle}>
+        <IoGameControllerOutline size={24} style={{ color: "var(--color)" }} />
+      </Link>
+      <Link to="/ranking" style={styles.tabStyle}>
+        <LiaChartBar size={24} style={{ color: "var(--color)" }} />
+      </Link>
+    </nav>
   );
-}
+};
 
 const styles = {
-  container: {
-    padding: "20px",
-    position: "fixed",
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
-  content: {
-    width: "500px",
-    margin: "auto",
-    display: "flex",
-    flexDirection: "column",
-    minHeight: "93vh", // Take up all vertical space
-  },
   navStyle: {
     display: "flex",
     justifyContent: "center",
@@ -67,4 +45,4 @@ const styles = {
   },
 };
 
-export default App;
+export default TabBar;
