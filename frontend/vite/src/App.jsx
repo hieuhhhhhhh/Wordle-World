@@ -34,7 +34,7 @@ const styles = {
     left: 0,
     backgroundImage: `url('background.jpg')`,
     backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundPosition: "bottom",
     backgroundRepeat: "no-repeat",
   },
   content: {
@@ -45,6 +45,7 @@ const styles = {
     minHeight: "93vh",
     backgroundColor: "var(--background-color)",
     borderRadius: "10px",
+    boxShadow: "0px 10px 12px rgba(0, 0, 0, 0.7)", // Add shadow here
   },
 };
 
