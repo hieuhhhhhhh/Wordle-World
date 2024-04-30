@@ -17,6 +17,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.tabIcon:hover {
+  background-color: rgba(150, 150, 150, 0.3);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px; 
+}
+
 a {
   font-weight: 500;
   color: #646cff;

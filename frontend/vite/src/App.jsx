@@ -14,7 +14,7 @@ function App() {
           <TabBar />
 
           <Routes>
-            <Route path="/ranking" exact element={<Rank />} />
+            <Route path="/ranking" element={<Rank />} />
             <Route path="/" element={<Play />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
@@ -45,7 +45,7 @@ const styles = {
     minHeight: "93vh",
     backgroundColor: "var(--background-color)",
     borderRadius: "10px",
-    boxShadow: "0px 10px 12px rgba(0, 0, 0, 0.7)", // Add shadow here
+    boxShadow: "0px 5px 12px rgba(0, 0, 0, 1)", // Add shadow here
   },
 };
 

@@ -12,6 +12,7 @@ const TabBar = () => {
       <NavLink to="/profile" style={styles.tabStyle}>
         <IoPersonOutline
           size={30}
+          className="tabIcon"
           style={
             location.pathname === "/profile" ? styles.activeIcon : styles.icon
           }
@@ -20,12 +21,14 @@ const TabBar = () => {
       <NavLink to="/" style={styles.tabStyle}>
         <IoGameControllerOutline
           size={30}
+          className="tabIcon"
           style={location.pathname === "/" ? styles.activeIcon : styles.icon}
         />
       </NavLink>
       <NavLink to="/ranking" style={styles.tabStyle}>
         <LiaChartBar
           size={30}
+          className="tabIcon"
           style={
             location.pathname === "/ranking" ? styles.activeIcon : styles.icon
           }
