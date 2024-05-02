@@ -18,4 +18,13 @@ const getDB = async () => {
   return db;
 };
 
-export { getDB };
+const addOneDoc = (db, coll, doc) => db.collection(coll).insertOne(doc);
+
+const count = (db, coll) => db.collection(coll).countDocuments();
+
+const getManyDocs = (db, coll, criteria, projection) =>
+  db.collection(coll).find(criteria).project(projection).toArray();
+
+const getOneDoc = (db, coll, criteria) => db.collection(coll).findOne(criteria);
+
+export { getDB, addOneDoc, getOneDoc, getManyDocs, count };
