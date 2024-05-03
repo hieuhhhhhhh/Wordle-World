@@ -1,6 +1,7 @@
 import * as DBroutines from "backend/DBroutines";
 import hashString from "./helpers/hash.js";
 import setTokenTimeout from "./helpers/setTokenTO.js";
+import { ObjectId } from "mongodb";
 
 const logIn = async (req, res) => {
   try {
@@ -22,10 +23,11 @@ const logIn = async (req, res) => {
 
     // 4: return result
     if (hashed === result.password) {
-      const token = { username: username, expiry: null };
-      const tokenRes = await DBroutines.addDoc(db, "tokens", token);
+      const tokenInfo = { username: username, expiry: null };
+      const result2 = await DBroutines.addDoc(db, "tokens", tokenInfo);
 
-      res.send({ token: tokenRes.insertedId });
+      const token = { _id: result2.insertedId };
+      res.send(token);
 
       // 5: start token timeout.
       setTokenTimeout(token);

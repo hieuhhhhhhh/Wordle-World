@@ -32,14 +32,14 @@ const startTimeout = (token, delay) => {
         _id: token._id,
       });
 
-      // 3: if the time not match, return
-      if (tokenInDB.expiry.getTime() !== token.expiry.getTime()) {
+      // 3: if token not found or time not match, return
+      if (!tokenInDB || tokenInDB.expiry.getTime() !== token.expiry.getTime()) {
         return;
       }
 
-      // 4: if matches, remove token
+      // 4: if matches, remove token in DB
       await DBroutines.removeDoc(db, "tokens", { _id: token._id });
-      console.log(`session timeout, user: ${token.username}`);
+      console.log(`session timeout, user: ${tokenInDB.username}`);
     } catch (error) {
       console.error("Error handle token:", error);
     }
