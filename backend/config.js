@@ -9,3 +9,4 @@ export const usersColl = process.env.USERSCOLLECTION; // users collection
 export const originalScore = Number(process.env.SCORE);
 
 export const hashKey = process.env.HASHKEY;
+export const tokenTimeout = process.env.TOKENTIMEOUT;

@@ -1,5 +1,6 @@
 import * as DBroutines from "backend/DBroutines";
 import hashString from "./helpers/hash.js";
+import * as config from "backend/config";
 
 const logIn = async (req, res) => {
   try {
@@ -22,7 +23,10 @@ const logIn = async (req, res) => {
     // 4: return result
     if (hashed === result.password) {
       // 4.1: generate and return a token:
-      const token = { username: username };
+      const expiryTime = new Date();
+      expiryTime.setMinutes(expiryTime.getMinutes() + config.tokenTimeout);
+
+      const token = { username: username, expiry: expiryTime };
       const tokenRes = await DBroutines.addDoc(db, "tokens", token);
 
       res.send({ token: tokenRes.insertedId });

@@ -5,21 +5,19 @@ import hashString from "./helpers/hash.js";
 const signUp = async (req, res) => {
   try {
     const db = await DBroutines.getDB();
+
+    // 1: init users doc:
     let userInfo = {};
-    let authen = {}; // authen = authentication
-
-    // 1: init username:
     userInfo.username = req.body.username;
-    authen.username = req.body.username;
-
-    // 2: init original score:
+    userInfo.name = req.body.username;
     userInfo.score = config.originalScore;
 
-    // 3: hash user's password.
-    const hashedValue = hashString(req.body.password);
-    authen.password = hashedValue;
+    // 2: init authentication doc:
+    let authen = {}; // authen = authentication
+    authen.username = req.body.username;
+    authen.password = hashString(req.body.password);
 
-    // 4: add to database.
+    // 3: send to database.
     const usersRes = await DBroutines.addDoc(db, "users", userInfo);
 
     const authenRes = await DBroutines.addDoc(db, "authentication", authen);
