@@ -1,6 +1,6 @@
 import * as DBroutines from "backend/DBroutines";
 
-const fetchUserInfos = async (_req, res) => {
+const fetchUsersInfo = async (_req, res) => {
   try {
     const db = await DBroutines.getDB();
     const result = await DBroutines.getDocs(db, "users", {}, {});
@@ -11,4 +11,4 @@ const fetchUserInfos = async (_req, res) => {
   }
 };
 
-export default fetchUserInfos;
+export default fetchUsersInfo;
