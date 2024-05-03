@@ -19,6 +19,8 @@
   },
   "exports": {
     "./DBroutines": "./src/DBroutines.js",
-    "./config":"./config.js"
+    "./config": "./config.js",
+    "./routes/*": "./src/routes/*"
+
   }
 }

@@ -1,23 +1,22 @@
 import * as config from "./config.js";
 import express from "express";
-import * as DBroutines from "backend/DBroutines";
+
+// route handlers:
+
+import validateSignUp from "backend/routes/middleware/validator.js";
+import fetchUserInfos from "backend/routes/fetchUsers.js";
+import signUp from "backend/routes/signUp.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static("public"));
 
-app.get("/users", async (_req, res) => {
-  try {
-    const db = await DBroutines.getDB();
-    const result = await DBroutines.getDocs(db, "users", {}, {});
-    res.send(result);
-  } catch (error) {
-    console.error("Error fetching documents:", error);
-    res.status(500).send("Error fetching documents");
-  }
-});
+app.get("/users", fetchUserInfos);
 
+app.post("/signUp", validateSignUp, signUp);
+
+// Start the server
 app.listen(config.port, () => {
   console.log(`listening on port ${config.port}`);
 });
