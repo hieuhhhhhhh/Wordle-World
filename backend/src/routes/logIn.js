@@ -1,6 +1,5 @@
 import * as DBroutines from "backend/DBroutines";
 import hashString from "./helpers/hash.js";
-import * as config from "backend/config";
 import setTokenTimeout from "./helpers/setTokenTO.js";
 
 const logIn = async (req, res) => {
@@ -23,16 +22,12 @@ const logIn = async (req, res) => {
 
     // 4: return result
     if (hashed === result.password) {
-      // 4.1: generate and return a token:
-      const expiryTime = new Date();
-      expiryTime.setMinutes(expiryTime.getMinutes() + config.tokenTimeout);
-
-      const token = { username: username, expiry: expiryTime };
+      const token = { username: username, expiry: null };
       const tokenRes = await DBroutines.addDoc(db, "tokens", token);
 
       res.send({ token: tokenRes.insertedId });
 
-      // 5: start timeout for expiry.
+      // 5: start token timeout.
       setTokenTimeout(token);
     } else {
       res.status(401).send("Wrong Password.");
