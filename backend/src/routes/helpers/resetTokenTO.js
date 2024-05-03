@@ -1,7 +1,7 @@
 import * as DBroutines from "backend/DBroutines";
 import * as config from "backend/config";
 
-const setTokenTimeout = async (token) => {
+const resetTokenTimeout = async (token) => {
   try {
     // 1: setup expiry
     const expiry = new Date();
@@ -46,4 +46,4 @@ const startTimeout = (token, delay) => {
   }, delay);
 };
 
-export default setTokenTimeout;
+export default resetTokenTimeout;

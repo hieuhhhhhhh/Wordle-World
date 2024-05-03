@@ -1,7 +1,6 @@
 import * as DBroutines from "backend/DBroutines";
 import hashString from "./helpers/hash.js";
-import setTokenTimeout from "./helpers/setTokenTO.js";
-import { ObjectId } from "mongodb";
+import resetTokenTO from "./helpers/resetTokenTO.js";
 
 const logIn = async (req, res) => {
   try {
@@ -22,18 +21,21 @@ const logIn = async (req, res) => {
     });
 
     // 4: return result
-    if (hashed === result.password) {
-      const tokenInfo = { username: username, expiry: null };
-      const result2 = await DBroutines.addDoc(db, "tokens", tokenInfo);
-
-      const token = { _id: result2.insertedId };
-      res.send(token);
-
-      // 5: start token timeout.
-      setTokenTimeout(token);
-    } else {
-      res.status(401).send("Wrong Password.");
+    // 4.1: user not found OR wrong password
+    if (!result || hashed !== result.password) {
+      res.status(401).send("Invalid Username or Password.");
+      return;
     }
+
+    // 4.2: succesful login. return token
+    const tokenInfo = { username: username, expiry: null };
+    const result2 = await DBroutines.addDoc(db, "tokens", tokenInfo);
+
+    const token = { _id: result2.insertedId };
+    res.send(token);
+
+    // 4.2.1: start token timeout.
+    resetTokenTO(token);
   } catch (error) {
     console.error("Error login:", error);
     res.status(500).send("Error login.");
