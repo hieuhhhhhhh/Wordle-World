@@ -19,6 +19,10 @@ const getDB = async () => {
 
 const addDoc = (db, coll, doc) => db.collection(coll).insertOne(doc);
 
+const removeDoc = (db, coll, filter) => {
+  return db.collection(coll).deleteOne(filter);
+};
+
 const count = (db, coll) => db.collection(coll).countDocuments();
 
 const getDocs = (db, coll, criteria, projection) =>
@@ -31,4 +35,4 @@ const updateDoc = (db, coll, criteria, projection) =>
     .collection(coll)
     .findOneAndUpdate(criteria, { $set: projection }, { rawResult: true });
 
-export { getDB, addDoc, getDoc, getDocs, count, updateDoc };
+export { getDB, addDoc, getDoc, getDocs, count, updateDoc, removeDoc };

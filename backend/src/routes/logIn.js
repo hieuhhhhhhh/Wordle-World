@@ -1,6 +1,7 @@
 import * as DBroutines from "backend/DBroutines";
 import hashString from "./helpers/hash.js";
 import * as config from "backend/config";
+import removeExpiredToken from "./helpers/removeEToken.js";
 
 const logIn = async (req, res) => {
   try {
@@ -30,6 +31,9 @@ const logIn = async (req, res) => {
       const tokenRes = await DBroutines.addDoc(db, "tokens", token);
 
       res.send({ token: tokenRes.insertedId });
+
+      // 5: start timeout for expiry.
+      removeExpiredToken(token);
     } else {
       res.status(401).send("Wrong Password.");
     }
