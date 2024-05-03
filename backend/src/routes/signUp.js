@@ -1,13 +1,6 @@
 import * as DBroutines from "backend/DBroutines";
-import crypto from "crypto";
-
-const secretKey = "wordle";
-
-const hashString = (inputString) => {
-  const hmac = crypto.createHmac("md5", secretKey);
-  hmac.update(inputString);
-  return hmac.digest("hex");
-};
+import * as config from "backend/config";
+import hashString from "./helpers/hash.js";
 
 const signUp = async (req, res) => {
   try {
@@ -20,7 +13,7 @@ const signUp = async (req, res) => {
     authen.username = req.body.username;
 
     // 2: init original score:
-    userInfo.score = 50;
+    userInfo.score = config.originalScore;
 
     // 3: hash user's password.
     const hashedValue = hashString(req.body.password);
