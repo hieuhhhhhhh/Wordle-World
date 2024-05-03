@@ -18,6 +18,7 @@
     "yargs": "^17.7.2"
   },
   "exports": {
-    "./DBroutines": "./src/DBroutines.js"
+    "./DBroutines": "./src/DBroutines.js",
+    "./config":"./config.js"
   }
 }
