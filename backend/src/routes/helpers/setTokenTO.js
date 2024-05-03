@@ -1,7 +1,7 @@
 import * as DBroutines from "backend/DBroutines";
 import * as config from "backend/config";
 
-const removeExpiredToken = async (token) => {
+const setTokenTimeout = async (token) => {
   const db = await DBroutines.getDB();
   try {
     setTimeout(async () => {
@@ -13,4 +13,4 @@ const removeExpiredToken = async (token) => {
   }
 };
 
-export default removeExpiredToken;
+export default setTokenTimeout;
