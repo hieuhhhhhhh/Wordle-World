@@ -12,7 +12,7 @@ const setTokenTimeout = async (token) => {
         _id: token._id,
       });
 
-      // 3: if not match, return
+      // 3: if the time not match, return
       if (tokenInDB.expiry.getTime() !== token.expiry.getTime()) {
         return;
       }
