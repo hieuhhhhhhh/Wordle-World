@@ -1,14 +1,45 @@
-// Home.js
-
 import React from "react";
 
-function Home() {
+// services:
+import requestLogIn from "vite/Services/requestLogIn.jsx";
+import getToken from "vite/Services/getToken.jsx";
+
+function LogIn() {
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleLogin = async () => {
+    const token = await requestLogIn(username, password);
+    // Convert the object to a JSON string
+
+    // Store Token to Local storage
+    localStorage.setItem("token", JSON.stringify(token));
+
+    console.log(getToken()); // This will log 'value'
+  };
+
   return (
     <div>
-      <h2>Home</h2>
-      <p>Welcome to the Home page!</p>
+      <h2>Login</h2>
+      <div>
+        <label>Username:</label>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }
 
-export default Home;
+export default LogIn;

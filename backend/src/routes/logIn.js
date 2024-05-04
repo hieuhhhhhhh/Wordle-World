@@ -10,7 +10,7 @@ const logIn = async (req, res) => {
 
     // 2: validate request:
     if (!username || !password) {
-      return res.status(400).send("username + password are required");
+      return res.status(400).send("username or password is empty");
     }
 
     // 3: compare hashed password with database:
@@ -33,7 +33,7 @@ const logIn = async (req, res) => {
 
     const token = { _id: result2.insertedId };
     res.send(token);
-
+    console.log(`logged in, user: ${username}`);
     // 4.2.1: start token timeout.
     resetTokenTO(token);
   } catch (error) {

@@ -5,14 +5,10 @@ let db; // db = database
 
 const getDB = async () => {
   if (db) {
-    console.log("using Atlas connection");
-
     return db;
   }
   const client = new MongoClient(cfg.atlasURL);
   const connection = await client.connect();
-  console.log("establishing new Atlas connection");
-
   db = connection.db(cfg.DBname);
   return db;
 };
