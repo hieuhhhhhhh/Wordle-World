@@ -1,4 +1,5 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
+
 import * as cfg from "backend/config";
 
 let db; // db = database
@@ -26,9 +27,21 @@ const getDocs = (db, coll, criteria, projection) =>
 
 const getDoc = (db, coll, criteria) => db.collection(coll).findOne(criteria);
 
+const getDocByID = (db, coll, id) =>
+  db.collection(coll).findOne({ _id: ObjectId.createFromHexString(id) });
+
 const updateDoc = (db, coll, criteria, projection) =>
   db
     .collection(coll)
     .findOneAndUpdate(criteria, { $set: projection }, { rawResult: true });
 
-export { getDB, addDoc, getDoc, getDocs, count, updateDoc, removeDoc };
+export {
+  getDB,
+  addDoc,
+  getDoc,
+  getDocs,
+  count,
+  updateDoc,
+  removeDoc,
+  getDocByID,
+};

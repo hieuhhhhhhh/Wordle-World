@@ -1,5 +1,11 @@
 const getToken = () => {
-  return JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  if (!token) {
+    throw new Error("no token found");
+  }
+
+  return token;
 };
 
 export default getToken;

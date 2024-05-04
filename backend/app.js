@@ -7,6 +7,7 @@ import validateSignUp from "backend/routes/middleware/validator.js";
 import fetchUsersInfo from "backend/routes/fetchUsers.js";
 import signUp from "backend/routes/signUp.js";
 import login from "backend/routes/logIn.js";
+import startGame from "backend/routes/startGame.js";
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.get("/users", fetchUsersInfo);
 app.post("/signUp", validateSignUp, signUp);
 
 app.post("/logIn", login);
+
+app.post("/startGame", startGame);
 
 // Start the server
 app.listen(config.port, () => {

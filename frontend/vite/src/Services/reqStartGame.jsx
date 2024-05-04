@@ -1,12 +1,11 @@
-const requestLogIn = async (username, password) => {
-  const response = await fetch("http://localhost:5000/logIn", {
+const requestStartGame = async (token) => {
+  const response = await fetch("http://localhost:5000/startGame", {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify({
-      username: username,
-      password: password,
+      _id: token._id,
     }),
   });
   if (!response.ok) {
@@ -16,4 +15,4 @@ const requestLogIn = async (username, password) => {
   return await response.json();
 };
 
-export default requestLogIn;
+export default requestStartGame;

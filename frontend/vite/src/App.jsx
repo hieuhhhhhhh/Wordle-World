@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Profile from "./screens/Home";
-import Play from "./screens/About";
+import Profile from "./screens/Login";
+import Play from "./screens/StartGame";
 import Rank from "./screens/About";
 import TabBar from "./Components/TabBar";
 
