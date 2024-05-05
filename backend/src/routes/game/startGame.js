@@ -1,4 +1,5 @@
 import * as DBroutines from "backend/DBroutines";
+import generateWord from "backend/generateWord";
 
 const startGame = async (req, res) => {
   try {
@@ -16,16 +17,16 @@ const startGame = async (req, res) => {
     // 3: retrieve username from DB:
     const tokenInfo = await DBroutines.getDocByID(db, "tokens", token._id);
 
-    // 4: add a game doc:
     if (!tokenInfo) {
       return res.status(401).send("sesstion timeout");
     }
 
+    // 4: add a game doc:
     const game = {
       tokenID: token._id,
       username: tokenInfo.username,
       expiry: null,
-      answer: null,
+      answer: generateWord(),
     };
 
     const result = await DBroutines.addDoc(db, "games", game);

@@ -23,7 +23,7 @@
     "./config": "./config.js",
     "./routes/*": "./src/routes/*",
     "./authentication/*": "./src/routes/authentication/*",
-    "./game/*": "./src/routes/game/*"
-
+    "./game/*": "./src/routes/game/*",
+    "./generateWord":"./src/generateWord.js"
   }
 }

@@ -10,7 +10,7 @@ const logIn = async (req, res) => {
 
     // 2: validate request:
     if (!username || !password) {
-      return res.status(400).send("username or password is empty");
+      return res.status(400).send("username or password is missing");
     }
 
     // 3: compare hashed password with database:
