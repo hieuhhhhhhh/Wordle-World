@@ -1,6 +1,4 @@
 import * as DBroutines from "backend/DBroutines";
-import hashString from "./helpers/hash.js";
-import resetTokenTO from "./helpers/resetTokenTO.js";
 
 const startGame = async (req, res) => {
   try {

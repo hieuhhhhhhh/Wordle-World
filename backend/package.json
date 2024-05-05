@@ -21,6 +21,9 @@
   "exports": {
     "./DBroutines": "./src/DBroutines.js",
     "./config": "./config.js",
-    "./routes/*": "./src/routes/*"
+    "./routes/*": "./src/routes/*",
+    "./authentication/*": "./src/routes/authentication/*",
+    "./game/*": "./src/routes/game/*"
+
   }
 }

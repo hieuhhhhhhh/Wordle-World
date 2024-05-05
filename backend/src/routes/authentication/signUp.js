@@ -1,6 +1,6 @@
 import * as DBroutines from "backend/DBroutines";
 import * as config from "backend/config";
-import hashString from "./helpers/hash.js";
+import hashString from "../helpers/hash.js";
 
 const signUp = async (req, res) => {
   try {

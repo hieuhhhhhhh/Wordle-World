@@ -5,9 +5,9 @@ import cors from "cors";
 // routes:
 import validateSignUp from "backend/routes/middleware/validator.js";
 import fetchUsersInfo from "backend/routes/fetchUsers.js";
-import signUp from "backend/routes/signUp.js";
-import login from "backend/routes/logIn.js";
-import startGame from "backend/routes/startGame.js";
+import signUp from "backend/authentication/signUp.js";
+import login from "backend/authentication/logIn.js";
+import startGame from "backend/game/startGame.js";
 
 const app = express();
 
