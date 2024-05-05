@@ -1,8 +1,8 @@
 import React from "react";
 
 // services:
-import requestLogIn from "vite/Services/requestLogIn.jsx";
-import getToken from "vite/Services/getToken.jsx";
+import requestLogIn from "../Services/requestLogIn.jsx";
+import getToken from "../Services/getToken.jsx";
 
 function LogIn() {
   const [username, setUsername] = React.useState("");

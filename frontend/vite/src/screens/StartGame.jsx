@@ -1,5 +1,5 @@
-import requestStartGame from "vite/Services/reqStartGame.jsx";
-import getToken from "vite/Services/getToken.jsx";
+import requestStartGame from "../Services/reqStartGame.jsx";
+import getToken from "../Services/getToken.jsx";
 
 const gamePage = () => {
   const handleStartGame = async () => {
