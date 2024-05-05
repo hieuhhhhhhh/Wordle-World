@@ -1,5 +1,5 @@
-import requestStartGame from "../Services/reqStartGame.jsx";
-import getToken from "../Services/getToken.jsx";
+import requestStartGame from "@services/reqStartGame.jsx";
+import getToken from "@services/getToken.jsx";
 
 const gamePage = () => {
   const handleStartGame = async () => {
