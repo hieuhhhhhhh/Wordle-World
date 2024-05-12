@@ -3,7 +3,7 @@ import * as config from "backend/config";
 
 const resetTokenTimeout = async (token) => {
   try {
-    // 1: setup expiry
+    // 1: setup data
     const expiry = new Date();
     expiry.setMinutes(expiry.getMinutes() + config.tokenTimeout);
 

@@ -7,18 +7,18 @@ const signUp = async (req, res) => {
     const db = await DBroutines.getDB();
 
     // 1: init users doc:
-    let userInfo = {};
-    userInfo.username = req.body.username;
-    userInfo.name = req.body.username;
-    userInfo.score = config.originalScore;
+    let user = {};
+    user.username = req.body.username;
+    user.name = req.body.username;
+    user.score = config.originalScore;
 
     // 2: init authentication doc:
     let authen = {}; // authen = authentication
     authen.username = req.body.username;
     authen.password = hashString(req.body.password);
 
-    // 3: send to database.
-    const usersRes = await DBroutines.addDoc(db, "users", userInfo);
+    // 3: add 2 docs to database.
+    const usersRes = await DBroutines.addDoc(db, "users", user);
 
     const authenRes = await DBroutines.addDoc(db, "authentication", authen);
 

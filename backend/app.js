@@ -7,7 +7,9 @@ import validateSignUp from "backend/authentication/validateSignUp.js";
 import fetchUsersInfo from "backend/user/fetchUsers.js";
 import signUp from "backend/authentication/signUp.js";
 import login from "backend/authentication/logIn.js";
+import logout from "backend/authentication/logOut.js";
 import startGame from "backend/game/start.js";
+import resetTokenTO from "backend/token/resetTO.js";
 
 const app = express();
 
@@ -26,6 +28,13 @@ app.post("/signUp", validateSignUp, signUp);
 app.post("/logIn", login);
 
 app.post("/startGame", startGame);
+
+app.post("/userInteract", (req) => {
+  const token = req.body;
+  resetTokenTO(token);
+});
+
+app.post("/logOut", logout);
 
 // Start the server
 app.listen(config.port, () => {
