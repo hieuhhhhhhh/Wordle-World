@@ -22,7 +22,7 @@
     "./DBroutines": "./src/DBroutines.js",
     "./config": "./config.js",
     "./authentication/*": "./src/authentication/*",
-    "./generateWord":"./src/generateWord.js",
+    "./word/*":"./src/word/*",
     "./game/*": "./src/game/*",
     "./token/*":"./src/token/*",
     "./user/*":"./src/user/*"

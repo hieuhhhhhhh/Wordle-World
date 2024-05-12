@@ -27,14 +27,14 @@ app.post("/signUp", validateSignUp, signUp);
 
 app.post("/logIn", login);
 
+app.post("/logOut", logout);
+
 app.post("/startGame", startGame);
 
 app.post("/userInteract", (req) => {
   const token = req.body;
   resetTokenTO(token);
 });
-
-app.post("/logOut", logout);
 
 // Start the server
 app.listen(config.port, () => {

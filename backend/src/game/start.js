@@ -1,7 +1,7 @@
 import * as DBroutines from "backend/DBroutines";
-import generateWord from "backend/generateWord";
+import generateWord from "backend/word/generateWord.js";
 import getUserName from "backend/token/getUserName.js";
-import resetTokenTO from "backend/token/resetTO.js";
+import * as config from "backend/config";
 
 const startGame = async (req, res) => {
   try {
@@ -14,15 +14,14 @@ const startGame = async (req, res) => {
       username: getUserName(token),
       expiry: null,
       answer: generateWord(),
+      remainedGuesses: config.maxGuesses,
     };
 
     const result = await DBroutines.addDoc(db, "games", game);
+    result.gameTime = config.gameTime;
 
     // 3: return result:
     res.send(result);
-
-    // 4: reset token time out:
-    resetTokenTO(token);
   } catch (error) {
     console.error("Error starting game:", error);
     res.status(500).send("Error starting game.");
