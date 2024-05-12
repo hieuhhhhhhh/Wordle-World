@@ -3,11 +3,11 @@ import express from "express";
 import cors from "cors";
 
 // routes:
-import validateSignUp from "backend/routes/middleware/validator.js";
-import fetchUsersInfo from "backend/routes/fetchUsers.js";
+import validateSignUp from "backend/authentication/validateSignUp.js";
+import fetchUsersInfo from "backend/user/fetchUsers.js";
 import signUp from "backend/authentication/signUp.js";
 import login from "backend/authentication/logIn.js";
-import startGame from "backend/game/startGame.js";
+import startGame from "backend/game/start.js";
 
 const app = express();
 

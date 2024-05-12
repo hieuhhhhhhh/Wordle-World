@@ -1,6 +1,6 @@
 import * as DBroutines from "backend/DBroutines";
-import hashString from "../helpers/hash.js";
-import resetTokenTO from "../helpers/resetTokenTO.js";
+import hashString from "./hash.js";
+import resetTokenTO from "backend/token/resetTO.js";
 
 const logIn = async (req, res) => {
   try {
@@ -34,7 +34,8 @@ const logIn = async (req, res) => {
     const token = { _id: result2.insertedId };
     res.send(token);
     console.log(`logged in, user: ${username}`);
-    // 4.2.1: start token timeout.
+
+    // 5: start token timeout.
     resetTokenTO(token);
   } catch (error) {
     console.error("Error login:", error);

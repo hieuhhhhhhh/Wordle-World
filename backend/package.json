@@ -21,9 +21,11 @@
   "exports": {
     "./DBroutines": "./src/DBroutines.js",
     "./config": "./config.js",
-    "./routes/*": "./src/routes/*",
-    "./authentication/*": "./src/routes/authentication/*",
-    "./game/*": "./src/routes/game/*",
-    "./generateWord":"./src/generateWord.js"
+    "./authentication/*": "./src/authentication/*",
+    "./generateWord":"./src/generateWord.js",
+    "./game/*": "./src/game/*",
+    "./token/*":"./src/token/*",
+    "./user/*":"./src/user/*"
+
   }
 }

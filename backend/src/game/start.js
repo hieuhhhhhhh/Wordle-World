@@ -1,38 +1,28 @@
 import * as DBroutines from "backend/DBroutines";
 import generateWord from "backend/generateWord";
+import getUserName from "backend/token/getUserName.js";
+import resetTokenTO from "backend/token/resetTO.js";
 
 const startGame = async (req, res) => {
   try {
     // 1: set up data
     const token = req.body;
-    const db = await DBroutines.getDB();
 
-    // test:
-    console.log(token._id);
-    // 2: validate request:
-    if (!token) {
-      return res.status(400).send("token is missing");
-    }
-
-    // 3: retrieve username from DB:
-    const tokenInfo = await DBroutines.getDocByID(db, "tokens", token._id);
-
-    if (!tokenInfo) {
-      return res.status(401).send("sesstion timeout");
-    }
-
-    // 4: add a game doc:
+    // 2: create new game doc:
     const game = {
       tokenID: token._id,
-      username: tokenInfo.username,
+      username: getUserName(token),
       expiry: null,
       answer: generateWord(),
     };
 
     const result = await DBroutines.addDoc(db, "games", game);
 
-    // 5: return result:
+    // 3: return result:
     res.send(result);
+
+    // 4: reset token time out:
+    resetTokenTO(token);
   } catch (error) {
     console.error("Error starting game:", error);
     res.status(500).send("Error starting game.");
